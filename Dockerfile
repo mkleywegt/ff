@@ -11,13 +11,28 @@ FROM node:alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+
+ARG rootNotionPageId
+ARG siteAuthor
+ARG siteName
+ARG siteUrl
+
+# while we can control the site generation with environment variables, need to inject
+# them into the build container
+ENV NODE_ENV production
+ENV ROOT_NOTION_PAGE_ID $rootNotionPageId
+ENV SITE_AUTHOR $siteAuthor
+ENV SITE_NAME $siteName
+ENV SITE_URL $siteUrl
+
+# smoke test:
+RUN echo $ROOT_NOTION_PAGE_ID
+
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
 WORKDIR /app
-
-ENV NODE_ENV production
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
