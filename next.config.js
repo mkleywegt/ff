@@ -10,5 +10,11 @@ module.exports = withBundleAnalyzer({
   },
   future: {
     webpack5: true
+  },
+  env: {
+    'ROOT_NOTION_PAGE_ID': process.env.ROOT_NOTION_PAGE_ID,
+    'SITE_NAME': process.env.SITE_NAME,
+    'SITE_URL': process.env.SITE_URL,
+    'SITE_AUTHOR': process.env.SITE_AUTHOR,
   }
-})
+});
