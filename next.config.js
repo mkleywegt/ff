@@ -1,7 +1,7 @@
 // const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
-const bundleAnalyzer = require('@next/bundle-analyzer')
+const bundleAnalyzer = require('@next/bundle-analyzer');
 
 module.exports = withPlugins(
   [
