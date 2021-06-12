@@ -34,8 +34,8 @@ export async function getStaticPaths() {
       paths: [],
       fallback: true
     }
-  }
 
+  }
   const siteMaps = await getSiteMaps()
 
   const ret = {
@@ -47,7 +47,7 @@ export async function getStaticPaths() {
       }))
     ),
     // paths: [],
-    fallback: true
+    fallback: isDev,
   }
 
   console.log(ret.paths)
